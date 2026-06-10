@@ -532,15 +532,28 @@ def terminal_ws(ws, cid):
             pass
 
 
-def main():
+def init():
+    """Checa o Podman e sobe o Postgres + schema. Roda tanto no `python3 app.py`
+    (via main) quanto no import por um servidor WSGI como o gunicorn."""
     if podman(["--version"]).returncode != 0:
         raise SystemExit("Podman nao encontrado no host. Instale o podman.")
     ensure_postgres()
+
+
+def main():
+    init()
     shown = "localhost" if HOST in ("0.0.0.0", "127.0.0.1") else HOST
     print(f"Gerenciador em: http://{shown}:{PORT}  (bind {HOST})")
     print("Login obrigatorio. Cada terminal = 1 container Podman, so 127.0.0.1,")
     print("acessivel apenas pela conta dona (proxy autenticado). Ctrl+C para parar.")
     app.run(host=HOST, port=PORT, threaded=True)
+
+
+# Sob um WSGI (gunicorn: `app:app`) o main() nao roda, entao a inicializacao
+# precisa acontecer no import. No `python3 app.py` quem inicializa e o main(),
+# evitando rodar duas vezes.
+if __name__ != "__main__":
+    init()
 
 
 if __name__ == "__main__":
