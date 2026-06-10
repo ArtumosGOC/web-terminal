@@ -1,0 +1,29 @@
+# Force LF line endings to avoid ^M (CRLF) problems inside Linux containers,
+# even when the repo is cloned on Windows (where core.autocrlf=true is default).
+
+# Default: treat everything as text and normalize to LF on commit/checkout.
+* text=auto eol=lf
+
+# Be explicit for files that are executed inside the container.
+*.sh        text eol=lf
+*.zsh       text eol=lf
+*.zsh-theme text eol=lf
+*.py        text eol=lf
+*.js        text eol=lf
+*.html      text eol=lf
+*.txt       text eol=lf
+*.json      text eol=lf
+*.md        text eol=lf
+zshrc       text eol=lf
+Containerfile text eol=lf
+Dockerfile  text eol=lf
+.env*       text eol=lf
+
+# Binary files: never touch line endings.
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.ico  binary
+*.woff  binary
+*.woff2 binary
