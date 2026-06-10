@@ -1,0 +1,4 @@
+# Dependencias do app de terminal DENTRO do container (Flask + WebSocket).
+Flask>=3.0
+flask-sock>=0.7
+simple-websocket>=1.0

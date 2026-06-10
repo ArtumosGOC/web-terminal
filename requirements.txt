@@ -1,0 +1,6 @@
+# Gerenciador (host) — backend Flask. O app de terminal dentro do container
+# nao precisa de nada disso (usa so a stdlib).
+Flask>=3.0
+flask-sock>=0.7
+simple-websocket>=1.0
+psycopg[binary,pool]>=3.1

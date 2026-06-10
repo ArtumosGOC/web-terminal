@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Entrar — Terminais</title>
+  <style>
+    :root { color-scheme: dark; }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0; height: 100%; background: #0c0c0c; color: #e0e0e0;
+      font-family: 'Cascadia Code', Consolas, ui-monospace, monospace;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .card {
+      width: 340px; max-width: 90vw; background: #141414;
+      border: 1px solid #2a2a2a; border-radius: 12px; padding: 28px 26px;
+    }
+    h1 { font-size: 18px; margin: 0 0 4px; }
+    .sub { color: #8a8f94; font-size: 12px; margin-bottom: 22px; }
+    .tabs { display: flex; gap: 8px; margin-bottom: 18px; }
+    .tabs button {
+      flex: 1; padding: 8px; font-family: inherit; font-size: 13px;
+      background: #1d1d1d; color: #aaa; border: 1px solid #333;
+      border-radius: 7px; cursor: pointer;
+    }
+    .tabs button.active { background: #1f6f43; border-color: #2ecc71; color: #eafff2; }
+    label { display: block; font-size: 12px; color: #9aa0a6; margin: 12px 0 5px; }
+    input {
+      width: 100%; padding: 10px 12px; font-family: inherit; font-size: 14px;
+      background: #1b1b1b; color: #e0e0e0; border: 1px solid #333; border-radius: 8px;
+    }
+    input:focus { outline: none; border-color: #2ecc71; }
+    .go {
+      width: 100%; margin-top: 20px; padding: 11px; font-family: inherit;
+      font-size: 14px; font-weight: 600; background: #1f6f43; color: #eafff2;
+      border: 1px solid #2ecc71; border-radius: 8px; cursor: pointer;
+    }
+    .go:hover { background: #258a53; }
+    .msg { margin-top: 14px; font-size: 12px; min-height: 16px; color: #ff8a80; }
+  </style>
+</head>
+<body>
+  <div class="card" data-allow-register="{{ 'true' if allow_register else 'false' }}">
+    <h1>▮ Terminais</h1>
+    <div class="sub">Acesso por conta — cada terminal é vinculado a você.</div>
+
+    <div class="tabs">
+      <button id="tab-login" class="active">Entrar</button>
+      <button id="tab-register">Criar conta</button>
+    </div>
+
+    <form id="form">
+      <label for="username">Usuário</label>
+      <input id="username" autocomplete="username" autofocus />
+      <label for="password">Senha</label>
+      <input id="password" type="password" autocomplete="current-password" />
+      <button class="go" id="submit" type="submit">Entrar</button>
+      <div class="msg" id="msg"></div>
+    </form>
+  </div>
+
+  <script src="{{ url_for('static', filename='login.js') }}"></script>
+</body>
+</html>

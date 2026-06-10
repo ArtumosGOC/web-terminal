@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Terminais — Gerenciador</title>
+  <style>
+    :root { color-scheme: dark; }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0; min-height: 100%; background: #0c0c0c; color: #e0e0e0;
+      font-family: 'Cascadia Code', Consolas, ui-monospace, monospace;
+    }
+    header {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 12px; padding: 16px 22px; border-bottom: 1px solid #2a2a2a; background: #141414;
+    }
+    header h1 { font-size: 16px; margin: 0; font-weight: 600; letter-spacing: .3px; }
+    .who { font-size: 12px; color: #8a8f94; display: flex; align-items: center; gap: 12px; }
+    .who b { color: #79d68b; }
+    main { max-width: 880px; margin: 0 auto; padding: 24px 22px 60px; }
+    .new {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 10px;
+      padding: 16px; background: #141414; border: 1px solid #2a2a2a;
+      border-radius: 10px; margin-bottom: 24px;
+    }
+    .new label { font-size: 13px; color: #9aa0a6; }
+    select, button {
+      font-family: inherit; font-size: 13px; border-radius: 7px;
+      border: 1px solid #333; background: #1d1d1d; color: #e0e0e0;
+      padding: 8px 12px; cursor: pointer;
+    }
+    button.primary { background: #1f6f43; border-color: #2ecc71; color: #eafff2; font-weight: 600; }
+    button.primary:hover { background: #258a53; }
+    button:hover { border-color: #555; }
+    button.danger { color: #ff8a80; border-color: #5a2a2a; }
+    button.danger:hover { background: #2a1414; }
+    button.link { background: none; border: none; color: #8a8f94; padding: 0; }
+    button.link:hover { color: #ff8a80; text-decoration: underline; }
+    .list { display: flex; flex-direction: column; gap: 10px; }
+    .empty { color: #777; font-size: 14px; padding: 30px 4px; text-align: center; }
+    .card {
+      display: flex; align-items: center; gap: 14px; padding: 14px 16px;
+      background: #141414; border: 1px solid #2a2a2a; border-radius: 10px;
+    }
+    .dot { width: 10px; height: 10px; border-radius: 50%; background: #e74c3c; flex: none; }
+    .dot.on { background: #2ecc71; box-shadow: 0 0 8px #2ecc7188; }
+    .meta { flex: 1; min-width: 0; }
+    .meta .id { font-weight: 600; font-size: 14px; }
+    .meta .sub { font-size: 12px; color: #8a8f94; margin-top: 2px; }
+    .badge { font-size: 11px; padding: 2px 8px; border-radius: 999px;
+      background: #20331f; color: #79d68b; border: 1px solid #2e5a33; }
+    .badge.off { background: #331f1f; color: #d68a79; border-color: #5a2e2e; }
+    .actions { display: flex; gap: 8px; flex: none; }
+  </style>
+</head>
+<body data-username="{{ username }}">
+  <header>
+    <h1>▮ Meus terminais</h1>
+    <div class="who">
+      <span><b>{{ username }}</b></span>
+      <button class="link" id="logout">sair</button>
+    </div>
+  </header>
+
+  <main>
+    <div class="new">
+      <label for="shell">Novo terminal:</label>
+      <select id="shell">
+        <option value="zsh">zsh</option>
+        <option value="bash">bash</option>
+        <option value="sh">sh</option>
+        <option value="pwsh">pwsh</option>
+      </select>
+      <button class="primary" id="create">+ Criar terminal</button>
+      <span class="meta sub" id="busy"></span>
+    </div>
+    <div class="list" id="list"></div>
+  </main>
+
+  <script src="{{ url_for('static', filename='manager.js') }}"></script>
+</body>
+</html>

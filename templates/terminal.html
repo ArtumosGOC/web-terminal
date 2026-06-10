@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Terminal {{ cid }}</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xterm@5.3.0/css/xterm.min.css" />
+  <style>
+    html, body {
+      margin: 0; height: 100%; background: #0c0c0c;
+      font-family: 'Cascadia Code', Consolas, monospace;
+    }
+    #bar {
+      height: 34px; display: flex; align-items: center; gap: 10px;
+      padding: 0 14px; background: #1b1b1b; color: #ccc; font-size: 13px;
+      border-bottom: 1px solid #333; user-select: none;
+    }
+    #dot { width: 10px; height: 10px; border-radius: 50%; background: #e74c3c; }
+    #dot.on { background: #2ecc71; }
+    #sid { color: #888; }
+    #bar a { color: #79d68b; text-decoration: none; margin-left: auto; font-size: 12px; }
+    #bar a:hover { text-decoration: underline; }
+    #term { height: calc(100% - 35px); padding: 6px; }
+  </style>
+</head>
+<body data-cid="{{ cid }}">
+  <div id="bar">
+    <span id="dot"></span>
+    <span id="status">conectando…</span>
+    <span id="sid">#{{ cid }}</span>
+    <a href="/">↩ gerenciador</a>
+  </div>
+  <div id="term"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/xterm@5.3.0/lib/xterm.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/xterm-addon-fit@0.8.0/lib/xterm-addon-fit.min.js"></script>
+  <script src="{{ url_for('static', filename='terminal.js') }}"></script>
+</body>
+</html>

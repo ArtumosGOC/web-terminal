@@ -1,0 +1,7 @@
+# Segredos e config local — NUNCA versionar.
+.env
+
+# Ambiente virtual e caches do Python.
+.venv/
+__pycache__/
+*.pyc
