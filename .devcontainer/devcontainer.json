@@ -1,7 +1,7 @@
 {
   "name": "web-terminal (Podman rootless)",
   "image": "mcr.microsoft.com/devcontainers/python:3.12-bookworm",
-
+  
   // Variaveis nao-secretas. SECRET_KEY / PG_PASSWORD / ADMIN_* devem ir
   // em Codespaces Secrets ou num .env (veja .devcontainer/README).
   "containerEnv": {
