@@ -1,0 +1,24 @@
+{
+  "name": "web-terminal (Podman rootless)",
+  "image": "mcr.microsoft.com/devcontainers/python:3.12-bookworm",
+
+  // Variaveis nao-secretas. SECRET_KEY / PG_PASSWORD / ADMIN_* devem ir
+  // em Codespaces Secrets ou num .env (veja .devcontainer/README).
+  "containerEnv": {
+    "MANAGER_HOST": "0.0.0.0",
+    "MANAGER_PORT": "8765",
+    "FORCE_HTTPS": "true",
+    "ALLOW_REGISTER": "true"
+  },
+
+  "forwardPorts": [8765],
+  "portsAttributes": {
+    "8765": {
+      "label": "web-terminal",
+      "onAutoForward": "notify"
+    }
+  },
+
+  "postCreateCommand": "bash .devcontainer/setup.sh",
+  "remoteUser": "vscode"
+}
