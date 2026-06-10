@@ -3,6 +3,11 @@
 # Roda uma vez, no postCreate do devcontainer.
 set -euo pipefail
 
+# Garante a raiz do repo como diretorio de trabalho, independente de onde
+# o postCreate tenha chamado este script.
+cd "$(dirname "$(dirname "$(readlink -f "$0")")")"
+echo "==> Diretorio do projeto: $(pwd)"
+
 echo "==> Instalando Podman (rootless) e dependencias..."
 sudo apt-get update -qq
 sudo apt-get install -y -qq podman fuse-overlayfs uidmap slirp4netns
