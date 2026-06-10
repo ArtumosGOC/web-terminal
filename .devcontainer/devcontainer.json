@@ -1,14 +1,9 @@
 {
   "name": "web-terminal (Podman rootless)",
   "image": "mcr.microsoft.com/devcontainers/python:3.12-bookworm",
-
-  "runArgs": [
-    "--cap-add=SYS_ADMIN",
-    "--cap-add=SETUID",
-    "--cap-add=SETGID",
-    "--security-opt", "seccomp=unconfined",
-    "--device", "/dev/fuse"
-  ],
+  
+  // de alguma forma isso tem que funcionar
+  "runArgs": ["--privileged"],
 
   // Variaveis nao-secretas. SECRET_KEY / PG_PASSWORD / ADMIN_* devem ir
   // em Codespaces Secrets ou num .env (veja .devcontainer/README).
