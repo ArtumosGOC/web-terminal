@@ -49,6 +49,7 @@ ykali_banner() {
   _yk_kv "author"       "YAJ"               "$Cyan"
   _yk_kv "developed by" "YAJ"               "$Cyan"
   _yk_kv "github"       "@JeffreyYAJ"       "$BIGreen"
+  _yk_kv "Moded"       "@ArtumosGOC"       "$BIGreen"
   _yk_kv "machine"      "${USER}@${host}"   "$BGreen"
   printf "%b╚%s╝%b\n" "$B" "$bar" "$R"
 }
